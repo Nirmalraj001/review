@@ -5,7 +5,7 @@ import { EmailTemplateData } from '../types/review';
 // Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS public key
 const EMAILJS_PUBLIC_KEY = '8zapjqABRvc2P0VQP';
 const EMAILJS_SERVICE_ID = 'service_u55vp4p';
-const EMAILJS_TEMPLATE_ID = 'template_sd3noea';
+const EMAILJS_TEMPLATE_ID = 'template_xkiiyxc';
 
 export const initializeEmailJS = () => {
   emailjs.init(EMAILJS_PUBLIC_KEY);
