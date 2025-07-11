@@ -1,7 +1,7 @@
 import { Review } from '../types/review';
 
 // Replace with your SheetDB API endpoint
-const SHEETS_API_URL = 'https://sheetdb.io/api/v1/ezk9n3qwq71l2';
+const SHEETS_API_URL = 'https://sheetdb.io/api/v1/oc35cjb1zzk68';
 
 export const saveReviewToSheet = async (reviewData: Review): Promise<void> => {
   try {
