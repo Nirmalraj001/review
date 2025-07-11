@@ -20,7 +20,7 @@ export const sendReviewEmail = async (reviewData: EmailTemplateData): Promise<vo
       customer_mobile: reviewData.mobile,
       customer_message: reviewData.message,
       submission_time: reviewData.timestamp,
-      reply_to: 'noreply@yourcompany.com'
+      reply_to: 'ntwohenterprises@gmail.com'
     };
 
     const response = await emailjs.send(
