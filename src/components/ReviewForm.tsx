@@ -46,8 +46,12 @@ const ReviewForm: React.FC = () => {
   const [hoveredStar, setHoveredStar] = useState(0);
 
   const products = [
-    'Snacks items',
-    'Pepper mill powder',
+    'Black Uraddal Laddu',
+    'Moong Bean Laddu',
+    'Dry Fruits Laddu',
+    'Pepper milk powder',
+    'Sukku Powder',
+    'Dry Ginger Powder',
     'Avarampoo drink powder',
     'Idly podi',
     'Multi mix Masala powder',
@@ -97,14 +101,14 @@ const ReviewForm: React.FC = () => {
     setFormData(prev => ({
       ...prev,
       products: prev.products.includes(product)
-        ? prev.products.filter((p:any) => p !== product)
+        ? prev.products.filter((p: any) => p !== product)
         : [...prev.products, product]
     }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
 
     setIsSubmitting(true);
@@ -153,7 +157,7 @@ const ReviewForm: React.FC = () => {
         ratingDescription: starDescriptions[formData.rating - 1],
         feedback: formData.feedback,
       };
-      
+
       await saveReviewToSheet(sheetsData);
 
       setSubmitSuccess(true);
@@ -185,11 +189,10 @@ const ReviewForm: React.FC = () => {
           <button
             key={star}
             type="button"
-            className={`text-2xl transition-all duration-200 transform hover:scale-110 ${
-              star <= (hoveredStar || formData.rating)
-                ? 'text-yellow-400'
-                : 'text-gray-300'
-            }`}
+            className={`text-2xl transition-all duration-200 transform hover:scale-110 ${star <= (hoveredStar || formData.rating)
+              ? 'text-yellow-400'
+              : 'text-gray-300'
+              }`}
             onMouseEnter={() => setHoveredStar(star)}
             onMouseLeave={() => setHoveredStar(0)}
             onClick={() => setFormData(prev => ({ ...prev, rating: star }))}
@@ -198,7 +201,7 @@ const ReviewForm: React.FC = () => {
           </button>
         ))}
         <span className="ml-3 text-sm text-gray-600">
-          {(hoveredStar || formData.rating) > 0 && 
+          {(hoveredStar || formData.rating) > 0 &&
             starDescriptions[(hoveredStar || formData.rating) - 1]}
         </span>
       </div>
@@ -223,24 +226,31 @@ const ReviewForm: React.FC = () => {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-t-xl p-8 shadow-lg">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold mb-2">N2H ENTERPRISES</h1>
-            <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-6 text-blue-100">
-              <div className="flex items-center space-x-2">
-                <MapPin className="w-4 h-4" />
-                <span className="text-sm">123 Business Street, City, State 12345</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Phone className="w-4 h-4" />
-                <span className="text-sm">+91 98765 43210</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Mail className="w-4 h-4" />
-                <span className="text-sm">info@n2henterprises.com</span>
-              </div>
+          <div className="text-center mb-4">
+            <h1 className="text-4xl font-bold">N2H ENTERPRISES</h1>
+          </div>
+
+          <div className="flex flex-col md:flex-row justify-center items-center gap-8 text-blue-100 text-sm text-center md:text-left">
+            {/* Address */}
+            <div className="flex items-center gap-2 max-w-xs">
+              <MapPin className="w-4 h-4" />
+              <span>No:12, Purasaradi, Agraharam 1st cross street, Avaniyapuram, Madurai - 625012.</span>
+            </div>
+
+            {/* Phone */}
+            <div className="flex items-center gap-2">
+              <Phone className="w-4 h-4" />
+              <span>+91 9942352907 / <br /> +91 8903449788</span>
+            </div>
+
+            {/* Email */}
+            <div className="flex items-center gap-2">
+              <Mail className="w-4 h-4" />
+              <span>ntwohenterprises@gmail.com</span>
             </div>
           </div>
         </div>
+
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="bg-white rounded-b-xl shadow-lg">
@@ -261,9 +271,8 @@ const ReviewForm: React.FC = () => {
                   type="text"
                   value={formData.name}
                   onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${
-                    errors.name ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${errors.name ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="Enter your full name"
                 />
                 {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
@@ -277,9 +286,8 @@ const ReviewForm: React.FC = () => {
                   type="tel"
                   value={formData.mobile}
                   onChange={(e) => setFormData(prev => ({ ...prev, mobile: e.target.value }))}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${
-                    errors.mobile ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${errors.mobile ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="Enter your mobile number"
                 />
                 {errors.mobile && <p className="text-red-500 text-sm mt-1">{errors.mobile}</p>}
@@ -387,37 +395,35 @@ const ReviewForm: React.FC = () => {
               </div>
             </div>
 
-            {formData.alreadyBought === 'yes' && (
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">
-                  Delivery Mode
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-3">
+                Delivery Mode
+              </label>
+              <div className="flex space-x-6">
+                <label className="flex items-center space-x-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="deliveryMode"
+                    value="courier"
+                    checked={formData.deliveryMode === 'courier'}
+                    onChange={(e) => setFormData(prev => ({ ...prev, deliveryMode: e.target.value }))}
+                    className="w-4 h-4 text-blue-600 focus:ring-2 focus:ring-blue-500"
+                  />
+                  <span className="text-gray-700">Courier</span>
                 </label>
-                <div className="flex space-x-6">
-                  <label className="flex items-center space-x-2 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="deliveryMode"
-                      value="courier"
-                      checked={formData.deliveryMode === 'courier'}
-                      onChange={(e) => setFormData(prev => ({ ...prev, deliveryMode: e.target.value }))}
-                      className="w-4 h-4 text-blue-600 focus:ring-2 focus:ring-blue-500"
-                    />
-                    <span className="text-gray-700">Courier</span>
-                  </label>
-                  <label className="flex items-center space-x-2 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="deliveryMode"
-                      value="hand-delivery"
-                      checked={formData.deliveryMode === 'hand-delivery'}
-                      onChange={(e) => setFormData(prev => ({ ...prev, deliveryMode: e.target.value }))}
-                      className="w-4 h-4 text-blue-600 focus:ring-2 focus:ring-blue-500"
-                    />
-                    <span className="text-gray-700">Hand Delivery</span>
-                  </label>
-                </div>
+                <label className="flex items-center space-x-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="deliveryMode"
+                    value="hand-delivery"
+                    checked={formData.deliveryMode === 'hand-delivery'}
+                    onChange={(e) => setFormData(prev => ({ ...prev, deliveryMode: e.target.value }))}
+                    className="w-4 h-4 text-blue-600 focus:ring-2 focus:ring-blue-500"
+                  />
+                  <span className="text-gray-700">Hand Delivery</span>
+                </label>
               </div>
-            )}
+            </div>
           </div>
 
           {/* Rating & Feedback */}
