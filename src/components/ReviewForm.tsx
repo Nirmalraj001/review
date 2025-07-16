@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Star, Send, MapPin, Phone, Mail, Check, X } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { saveReviewToSheet } from '../utils/googleSheetsService';
-import { openGoogleMapsReview } from '../utils/googleMapsService';
 import ThankYouPage from './ThankYouPage';
 
 export interface FormData {
@@ -69,7 +68,7 @@ const ReviewForm: React.FC = () => {
 
   // Initialize EmailJS
   useEffect(() => {
-    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'your-public-key');
+    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '8zapjqABRvc2P0VQP');
   }, []);
 
   const validateForm = (): boolean => {
@@ -137,8 +136,8 @@ const ReviewForm: React.FC = () => {
 
       // Send email using EmailJS
       await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID || 'your-service-id',
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'your-template-id',
+        import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_u55vp4p',
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_xkiiyxc',
         templateParams
       );
 
